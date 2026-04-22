@@ -1,0 +1,52 @@
+
+services:
+  frontend:
+    build: ./frontend
+    ports:
+      - "3000:3000"
+
+  auth-service:
+    build: ./backend/auth-service
+    ports:
+      - "4001:4001"
+
+  app-service:
+    build: ./backend/app-service
+    ports:
+      - "4002:4002"
+
+  ai-service:
+    build: ./ai-service
+    ports:
+      - "4003:4003"
+
+# untuk postgres, kita menggunakan image resmi dan mengatur environment variables untuk user, password, dan database. Kita juga memetakan port 5432 dan menyimpan data di volume pgdata
+  postgres:
+    image: postgres:14
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+      POSTGRES_DB: government
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ./postgres/init.sql:/docker-entrypoint-initdb.d/init.sql
+
+  # untuk nginx, kita akan menggunakan image resmi dan mengkonfigurasi dengan file nginx.conf yang kita buat
+  nginx:
+    image: nginx:latest
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+        - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+        - /etc/letsencrypt:/etc/letsencrypt
+    depends_on:
+      - frontend
+      - auth-service
+      - app-service
+      - ai-service
+
+volumes:
+  pgdata:
