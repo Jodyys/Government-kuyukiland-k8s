@@ -1,0 +1,53 @@
+{
+    "nodegroup": {
+        "nodegroupName": "ng-1",
+        "nodegroupArn": "arn:aws:eks:ap-southeast-1:278820798236:nodegroup/kuyukiland/ng-1/2ecedf22-1792-2e2a-1e40-da5dadef2da2",
+        "clusterName": "kuyukiland",
+        "version": "1.34",
+        "releaseVersion": "1.34.6-20260415",
+        "createdAt": "2026-04-24T06:53:55.902000+00:00",
+        "modifiedAt": "2026-04-24T07:11:15.460000+00:00",
+        "status": "DELETING",
+        "capacityType": "ON_DEMAND",
+        "scalingConfig": {
+            "minSize": 2,
+            "maxSize": 2,
+            "desiredSize": 2
+        },
+        "instanceTypes": [
+            "t3a.medium"
+        ],
+        "subnets": [
+            "subnet-0e8eaed48c47854d4",
+            "subnet-031c43e9ea97c1086",
+            "subnet-03669b0226069b6e5"
+        ],
+        "amiType": "AL2023_x86_64_STANDARD",
+        "nodeRole": "arn:aws:iam::278820798236:role/eksctl-kuyukiland-nodegroup-ng-1-NodeInstanceRole-lorEBh754aXw",
+        "labels": {
+            "alpha.eksctl.io/cluster-name": "kuyukiland",
+            "alpha.eksctl.io/nodegroup-name": "ng-1"
+        },
+        "health": {
+            "issues": []
+        },
+        "updateConfig": {
+            "maxUnavailable": 1
+        },
+        "launchTemplate": {
+            "name": "eksctl-kuyukiland-nodegroup-ng-1",
+            "version": "1",
+            "id": "lt-0450aeab0e89e0eb4"
+        },
+        "tags": {
+            "aws:cloudformation:stack-name": "eksctl-kuyukiland-nodegroup-ng-1",
+            "alpha.eksctl.io/cluster-name": "kuyukiland",
+            "alpha.eksctl.io/nodegroup-name": "ng-1",
+            "aws:cloudformation:stack-id": "arn:aws:cloudformation:ap-southeast-1:278820798236:stack/eksctl-kuyukiland-nodegroup-ng-1/4d20a010-3faa-11f1-a5ff-0a504d1d3b59",
+            "eksctl.cluster.k8s.io/v1alpha1/cluster-name": "kuyukiland",
+            "aws:cloudformation:logical-id": "ManagedNodeGroup",
+            "alpha.eksctl.io/nodegroup-type": "managed",
+            "alpha.eksctl.io/eksctl-version": "0.225.0"
+        }
+    }
+}

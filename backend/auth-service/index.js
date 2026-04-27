@@ -14,14 +14,26 @@ app.use(express.json());
 
 const SECRET_KEY = "SECRET_KEY";
 
-// 🐘 PostgreSQL connection
+// 🐘 PostgreSQL connection docker
+//const pool = new Pool({
+  //user: "admin",
+  //host: "postgres",
+  //database: "government",
+  //password: "admin",
+  //port: 5432,
+//});
+
+// connect to postgres rds aws
 const pool = new Pool({
-  user: "admin",
-  host: "postgres",
-  database: "government",
-  password: "admin",
-  port: 5432,
+  connectionString: process.env.DATABASE_URL,
+  ssl: {
+    rejectUnauthorized: false
+  }
 });
+
+pool.connect()
+  .then(() => console.log("✅ AUTH DB Connected"))
+  .catch(err => console.error("❌ AUTH DB Error:", err));
 
 // 🔐 Middleware JWT
 const authenticateToken = (req, res, next) => {
